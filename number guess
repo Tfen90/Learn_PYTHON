@@ -1,0 +1,30 @@
+# числовая угадайка
+print('Добро пожаловать в числовую угадайку')
+from random import *
+
+def is_valid(s):
+  if s.isdigit(): 
+    if 1<=int(s)<=100: return True
+    else: return False
+  else: return False
+
+print('Введите два числа, начало и конец угадываемого диапазона')
+a,b=int(input()), int(input())
+while True:
+  n=randint(a,b)
+  print(f'Я загадал целое число от {a} до {b}, угадаешь какое?')
+  count=0
+  while True:
+    m=input()
+    count+=1
+    if is_valid(m)==False:
+      print(f'А может быть все-таки введем целое число от {a} до {b}?')
+      continue
+    m=int(m)
+    if m<n: print('Ваше число меньше загаданного, попробуйте еще разок')
+    elif m>n: print('Ваше число больше загаданного, попробуйте еще разок')
+    elif m==n: print(f'Вы угадали c {count} попытки, поздравляем!'); break
+  s=input('Хотите сыграть еще разок? Введите да или нет!')
+  if s.lower()=='нет': break
+
+print('Спасибо, что играли в числовую угадайку. Еще увидимся...')
